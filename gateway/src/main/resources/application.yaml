@@ -1,0 +1,81 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/
+    instance:
+      hostname: gateway
+
+spring:
+  application:
+    name: gateway-server
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  profiles:
+    active: dev
+
+server:
+  max-http-header-size: 20480
+  tomcat:
+    uri-encoding: UTF-8
+  location: 127.0.0.1
+  servlet:
+    session:
+      timeout: 600
+    context-path: /
+
+# logging config
+logging:
+  config: classpath:config/log/logback.xml
+
+#mybatis:
+#  mapper-locations: classpath:mapper/*.xml
+#  config-location: classpath:config/mybatis/mybatis.xml
+#  type-handlers-package: cn.edu.nju.software.judicialtest.config.typeHandler
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 5000
+
+zuul:
+  #需要忽略的头部信息，不在传播到其他服务
+  sensitive-headers: Access-Control-Allow-Origin
+  ignored-headers: Access-Control-Allow-Origin,H-APP-Id,Token,APPToken
+  max:
+    host:
+      connections: 5000 #最大请求时间
+  host:  #等待
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+  routes:
+    api-oauth:
+      path: /account/**
+      sensitiveHeaders:
+      serviceId: oauth2-server
+    api-augmentation:
+      path: /analysis/**
+      sensitiveHeaders:
+      serviceId: analysis-server
+    api-evaluation:
+      path: /evaluation/**
+      sensitiveHeaders:
+      serviceId: evaluation-server
+    api-invoke:
+      path: /invoke/**
+      sensitiveHeaders:
+      serviceId: invoke-server
+    api-upload:
+      path: /upload/**
+      sensitiveHeaders:
+      serviceId: upload-server
+  add-proxy-headers: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeout-in-milliseconds: 60000

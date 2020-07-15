@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.nju.software.judicialtest.mapper.AccountMapper">
+    <sql id="tableName">
+       t_user
+    </sql>
+
+    <select id="selectByName" parameterType="string" resultType="user">
+        select id,username,telephone,email,password,salt
+        from
+        <include refid="tableName"/>
+        where username=#{username} or telephone=#{username} or email=#{email}
+    </select>
+
+    <insert id="insertUser" keyProperty="id" parameterType="user">
+        insert into
+        <include refid="tableName"/>
+        (id,username,telephone,email,salt,password,create_time,modify_time)
+        values
+        (#{id},#{username},#{telephone},#{email},#{salt},#{password},#{createTime},#{modifyTime})
+    </insert>
+
+</mapper>
