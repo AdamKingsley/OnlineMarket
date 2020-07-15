@@ -29,7 +29,7 @@
         <guava.version>28.1-jre</guava.version>
         <onlinemarket.common.version>1.0-SNAPSHOT</onlinemarket.common.version>
         <fastjson.version>1.2.62</fastjson.version>
-        <oauth2.version>RELEASE</oauth2.version>
+        <oauth2.version>2.0.18.RELEASE</oauth2.version>
         <swagger2.version>2.9.2</swagger2.version>
         <pagehelper.version>1.2.13</pagehelper.version>
         <fileupload.version>1.4</fileupload.version>
