@@ -11,6 +11,7 @@
         <module name="order" />
         <module name="merchant" />
         <module name="eureka" />
+        <module name="goods" />
         <module name="oauth2" />
         <module name="admin" />
       </profile>
@@ -22,6 +23,7 @@
       <module name="common" options="-parameters" />
       <module name="eureka" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="goods" options="-parameters" />
       <module name="merchant" options="-parameters" />
       <module name="oauth2" options="-parameters" />
       <module name="order" options="-parameters" />

@@ -35,6 +35,8 @@
         <fileupload.version>1.4</fileupload.version>
         <compress.version>1.20</compress.version>
         <commons.io.version>2.6</commons.io.version>
+        <usertype.version>7.0.0.CR1</usertype.version>
+        <actable.version>1.2.1.RELEASE</actable.version>
     </properties>
 
     <modules>
@@ -45,6 +47,7 @@
         <module>common</module>
         <module>gateway</module>
         <module>eureka</module>
+        <module>goods</module>
     </modules>
 
     <dependencyManagement>
@@ -57,15 +60,6 @@
                 <scope>import</scope>
             </dependency>
             <!-- 数据库操作相关 -->
-            <!-- <dependency>-->
-            <!--     <groupId>org.springframework.boot</groupId>-->
-            <!--     <artifactId>spring-boot-starter-jdbc</artifactId>-->
-            <!-- </dependency>-->
-            <!-- <dependency>-->
-            <!--     <groupId>mysql</groupId>-->
-            <!--     <artifactId>mysql-connector-java</artifactId>-->
-            <!--     <scope>runtime</scope>-->
-            <!-- </dependency>-->
             <dependency>
                 <groupId>tk.mybatis</groupId>
                 <artifactId>mapper-spring-boot-starter</artifactId>
@@ -77,14 +71,14 @@
                 <version>${mapper.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>${pagehelper.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.security.oauth</groupId>
@@ -105,6 +99,11 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-compress</artifactId>
                 <version>${compress.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gitee.sunchenbin.mybatis.actable</groupId>
+                <artifactId>mybatis-enhance-actable</artifactId>
+                <version>${actable.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

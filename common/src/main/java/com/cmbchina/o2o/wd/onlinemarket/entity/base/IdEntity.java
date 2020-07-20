@@ -1,10 +1,11 @@
 package com.cmbchina.o2o.wd.onlinemarket.entity.base;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.Column;
+import com.gitee.sunchenbin.mybatis.actable.annotation.IsAutoIncrement;
+import com.gitee.sunchenbin.mybatis.actable.annotation.IsKey;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -14,10 +15,16 @@ import javax.persistence.MappedSuperclass;
 @Data
 @Accessors(chain = true)
 @MappedSuperclass
-public class IdEntity extends BaseEntity {
+// @EnableSnakeToCamel
+public class IdEntity {
 
+    // @Id
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @Column
+    @IsKey
+    @IsAutoIncrement
+    @Column
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 }

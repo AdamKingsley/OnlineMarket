@@ -1,0 +1,49 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/
+    instance:
+      hostname: common
+
+spring:
+  application:
+    name: common-server
+  datasource:
+    url: jdbc:mysql://localhost:3306/onlinemarket?characterEncoding=utf8&useSSL=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    tomcat:
+      max-wait: 1000
+      max-idle: 10
+      min-idle: 5
+      initial-size: 5
+    type: com.alibaba.druid.pool.DruidDataSource
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      # 自动建表
+      ddl-auto: update
+
+server:
+  tomcat:
+    uri-encoding: UTF-8
+  location: 127.0.0.1
+  servlet:
+    session:
+      timeout: 600
+    context-path: /
+
+mybatis:
+  mapper-locations: classpath*:com/gitee/sunchenbin/mybatis/actable/mapping/*/*.xml
+  #  config-location: classpath:config/mybatis/mybatis.xml
+  type-handlers-package: com.cmbchina.o2o.wd.onlinemarket.config.typeHandler
+
+actable:
+  table:
+    auto: update
+  model:
+    pack: com.cmbchina.o2o.wd.onlinemarket.entity
+  database:
+    type: mysql

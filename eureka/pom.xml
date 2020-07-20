@@ -12,11 +12,11 @@
     <artifactId>eureka</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>com.cmbchina.o2o.wd</groupId>
-            <artifactId>common</artifactId>
-            <version>${onlinemarket.common.version}</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.cmbchina.o2o.wd</groupId>-->
+        <!--            <artifactId>common</artifactId>-->
+        <!--            <version>${onlinemarket.common.version}</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>

@@ -26,6 +26,6 @@ public interface AccountFeign {
     @PostMapping("/oauth/register")
     Result register(@RequestBody RegisterCommand command);
 
-    @GetMapping("/oauth/account")
+    @GetMapping("/oauth/user")
     Result user(@RequestParam("access_token") String token);
 }

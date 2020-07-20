@@ -1,11 +1,14 @@
 package com.cmbchina.o2o.wd.onlinemarket.entity.base;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.Column;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.joda.time.DateTime;
 
-import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+
+;
 
 /**
  * 基类，不包含ID，可以由非Long类型主键的entity继承
@@ -13,15 +16,18 @@ import javax.persistence.MappedSuperclass;
 @Data
 @Accessors(chain = true)
 @MappedSuperclass
+// @EnableSnakeToCamel
 public class BaseEntity {
 
-    @Column(name = "create_time")
+    @Column(name = "create_time", type = MySqlTypeConstant.DATETIME, isNull = false)
+    @javax.persistence.Column(name = "create_time")
     private DateTime createTime;
 
-    @Column(name = "modify_time")
+    @Column(name = "modify_time", type = MySqlTypeConstant.DATETIME, isNull = false)
+    @javax.persistence.Column(name = "modify_time")
     private DateTime modifyTime;
 
-    @Column(name = "is_deleted")
+    @Column(name = "is_deleted", isNull = false)
     private Boolean isDeleted;
 
     public BaseEntity() {

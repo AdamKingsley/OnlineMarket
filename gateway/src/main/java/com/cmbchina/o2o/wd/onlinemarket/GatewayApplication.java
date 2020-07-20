@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // gateway节点只提供统一接口的服务，并不直接跟数据库相关，因此不配置datasource
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@SpringBootApplication
 @EnableZuulProxy//动态代理
 @EnableDiscoveryClient//发现服务
 @EnableEurekaClient

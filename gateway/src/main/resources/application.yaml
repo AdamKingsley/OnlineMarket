@@ -28,12 +28,8 @@ server:
 
 # logging config
 logging:
-  config: classpath:config/log/logback.xml
+  config: classpath:log/logback.xml
 
-#mybatis:
-#  mapper-locations: classpath:mapper/*.xml
-#  config-location: classpath:config/mybatis/mybatis.xml
-#  type-handlers-package: cn.edu.nju.software.judicialtest.config.typeHandler
 
 ribbon:
   ReadTimeout: 60000
@@ -54,22 +50,10 @@ zuul:
       path: /account/**
       sensitiveHeaders:
       serviceId: oauth2-server
-    api-augmentation:
-      path: /analysis/**
+    api-merchant:
+      path: /merchant/**
       sensitiveHeaders:
-      serviceId: analysis-server
-    api-evaluation:
-      path: /evaluation/**
-      sensitiveHeaders:
-      serviceId: evaluation-server
-    api-invoke:
-      path: /invoke/**
-      sensitiveHeaders:
-      serviceId: invoke-server
-    api-upload:
-      path: /upload/**
-      sensitiveHeaders:
-      serviceId: upload-server
+      serviceId: merchant-server
   add-proxy-headers: true
 
 hystrix:

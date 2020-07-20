@@ -1,0 +1,44 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/
+    instance:
+      hostname: merchant
+
+spring:
+  application:
+    name: merchant-server
+  profiles:
+    active: dev
+
+server:
+  tomcat:
+    uri-encoding: UTF-8
+  location: 127.0.0.1
+  servlet:
+    session:
+      timeout: 600
+    context-path: /
+
+# logging config
+logging:
+  config: classpath:config/log/logback.xml
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  config-location: classpath:config/mybatis/mybatis.xml
+  type-handlers-package: com.cmbchina.o2o.wd.onlinemarket.config.typeHandler
+
+# ResourceServer的Filter们的顺序
+security:
+  oauth2:
+    resource:
+      filter-order: 3
+
+######### 分页插件 ##########
+pagehelper:
+  helper-dialect: mysql
+  # 开启的话PageNo < 1会默认返回第一页数据
+  reasonable: false
+  params: count=countSql
+  support-methods-arguments: true
