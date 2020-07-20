@@ -50,10 +50,22 @@ zuul:
       path: /account/**
       sensitiveHeaders:
       serviceId: oauth2-server
+    api-admin:
+      path: /admin/**
+      sensitiveHeaders:
+      serviceId: admin-server
     api-merchant:
       path: /merchant/**
       sensitiveHeaders:
       serviceId: merchant-server
+    api-goods:
+      path: /customer/**
+      sensitiveHeaders:
+      serviceId: goods-server
+    api-order:
+      path: /trade/**
+      sensitiveHeaders:
+      serviceId: order-server
   add-proxy-headers: true
 
 hystrix:
