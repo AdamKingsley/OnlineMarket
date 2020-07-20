@@ -10,5 +10,5 @@ import javax.persistence.MappedSuperclass;
  */
 @MappedSuperclass
 @Data
-public class GoodsDto {
+public class CustomerGoodsDto {
 }
