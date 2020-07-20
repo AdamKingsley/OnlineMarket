@@ -1,7 +1,6 @@
 package com.cmbchina.o2o.wd.onlinemarket.entity;
 
 
-import com.cmbchina.o2o.wd.onlinemarket.config.processor.EnableSnakeToCamel;
 import com.cmbchina.o2o.wd.onlinemarket.entity.base.BaseIdEntity;
 import com.gitee.sunchenbin.mybatis.actable.annotation.Column;
 import com.gitee.sunchenbin.mybatis.actable.annotation.Table;
@@ -32,8 +31,8 @@ public class GoodsAttr extends BaseIdEntity {
     private String image;
 
     // 该配置商品编号（每一个属性都有一个独特的商品编号）
-    @Column(name = "goods_code", length = 50)
-    private String goodsCode;
+    @Column(name = "code", length = 50)
+    private String code;
 
     // 该配置商品价格
     @Column
