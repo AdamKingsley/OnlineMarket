@@ -50,9 +50,12 @@ public class User extends BaseEntity {
     private String salt;
 
     @Column
-    private int status; // 状态
+    private Integer status; // 状态
 
     @Column
     private String avatar; // 头像
+
+    @Column(length = 500)
+    private String description;
 
 }

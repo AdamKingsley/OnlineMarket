@@ -59,13 +59,17 @@ zuul:
       sensitiveHeaders:
       serviceId: merchant-server
     api-goods:
-      path: /customer/**
+      path: /product/**
       sensitiveHeaders:
       serviceId: goods-server
     api-order:
       path: /trade/**
       sensitiveHeaders:
       serviceId: order-server
+    api-upload:
+      path: /upload/**
+      sensitiveHeaders:
+      serviceId: upload-server
   add-proxy-headers: true
 
 hystrix:

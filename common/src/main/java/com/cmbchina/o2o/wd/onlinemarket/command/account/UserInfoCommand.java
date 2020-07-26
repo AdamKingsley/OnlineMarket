@@ -14,5 +14,7 @@ public class UserInfoCommand {
     private String email;
     // @NotEmpty(message = "手机号不能为空")
     private String telephone;
+    private String description;
+
 
 }

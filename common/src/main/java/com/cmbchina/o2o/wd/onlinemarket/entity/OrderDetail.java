@@ -19,7 +19,7 @@ public class OrderDetail extends BaseIdEntity {
 
     // 套餐ID
     @Column(name = "attr_id")
-    private int attrId;
+    private Long attrId;
 
     // 套餐名称
     @Column(name = "attr_title", length = 50)
@@ -34,10 +34,10 @@ public class OrderDetail extends BaseIdEntity {
     private String img;
 
     @Column
-    private double price;
+    private Double price;
 
     @Column(name = "discount_amount")
-    private double discountAmount;
+    private Double discountAmount;
 
     // 套餐code
     @Column(name = "goods_code", length = 50)
@@ -45,10 +45,10 @@ public class OrderDetail extends BaseIdEntity {
 
     // 商家ID
     @Column(name = "merchant_id")
-    private long merchantId;
+    private Long merchantId;
 
     // 购买数量
     @Column
-    private int count;
+    private Integer count;
 
 }

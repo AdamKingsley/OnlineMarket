@@ -1,26 +1,12 @@
 package com.cmbchina.o2o.wd.onlinemarket;
 
 
-import com.alibaba.fastjson.serializer.SerializeConfig;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.fastjson.support.config.FastJsonConfig;
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import com.cmbchina.o2o.wd.onlinemarket.config.serializer.DateTimeSerializer;
-import com.cmbchina.o2o.wd.onlinemarket.constant.Strings;
-import org.joda.time.DateTime;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
 import tk.mybatis.spring.annotation.MapperScan;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootApplication
 @EnableEurekaClient

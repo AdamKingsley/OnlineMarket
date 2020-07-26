@@ -81,6 +81,7 @@ public class AccountServiceImpl implements AccountService {
         }
         // 均为String 忽略 null的字段，其余字段更新
         BeanUtils.copyProperties(command, user, CopyUtil.getNullPropertyNames(command));
+        CopyUtil.updateObject(user);
         userMapper.updateByPrimaryKey(user);
         return Result.success().setStatus(ResultStatus.OPERATION_SUCEES).setDescription("更新用户个人信息成功！");
     }

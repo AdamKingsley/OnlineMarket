@@ -11,18 +11,16 @@ public class Strings {
     public static final String CHECK_ACTION = "check";
     public static final String UPLOAD_ACTION = "upload";
 
-    public static final String MODEL_SAVE_DIR = "model";
-    public static final String DATA_SAVE_DIR = "data";
+    public static final String IS_DELETED = "isDeleted";
+    public static final String CREATE_TIME = "createTime";
+    public static final String MODIFY_TIME = "modifyTime";
+    public static final String USER_ID = "userId";
 
-    public static final String FILE_PATH = "file_path";
-    public static final String LABEL_FILE_PATH = "label_file_path";
-    public static final String LABEL_NAME_FILE_PATH = "label_name_file_path";
-
-    // 案例列表
-    public static final String CASE_LIST_KEY = "list";
-    public static final String FACT_KEY = "fact";
-    public static final String IMPRISONMENT_KEY = "imprisonment";
-    public static final String ARTICLE_KEY = "article";
-    public static final String ACCUSATION_KEY = "acussation";
-    public static final String MONEY_KEY = "money";
+    public static final String USERNAME = "username";
+    public static final String EMAIL = "email";
+    public static final String TELEPHONE = "telephone";
+    public static final String STATUS = "status";
+    public static final String TYPE = "type";
+    public static final String PARENT_ID = "parentId";
+    public static final String GOODS_ID = "goodsId";
 }

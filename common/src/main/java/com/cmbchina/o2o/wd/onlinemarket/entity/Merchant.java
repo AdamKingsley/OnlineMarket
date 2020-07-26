@@ -30,7 +30,7 @@ public class Merchant extends BaseIdEntity {
 
     //店铺地址ID
     @Column(name = "address_id")
-    private long addressId;
+    private Long addressId;
 
     // 店铺描述
     @Column(length = 500)
@@ -42,4 +42,10 @@ public class Merchant extends BaseIdEntity {
 
     @Column(name = "user_id", length = 45)
     private String userId;
+
+    @Column(length = 20)
+    private String telephone;
+
+    @Column(length = 45)
+    private String email;
 }

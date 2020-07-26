@@ -48,6 +48,7 @@
         <module>gateway</module>
         <module>eureka</module>
         <module>goods</module>
+        <module>upload</module>
     </modules>
 
     <dependencyManagement>

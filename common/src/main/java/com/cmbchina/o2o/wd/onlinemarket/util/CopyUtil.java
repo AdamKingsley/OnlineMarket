@@ -1,5 +1,8 @@
 package com.cmbchina.o2o.wd.onlinemarket.util;
 
+import com.cmbchina.o2o.wd.onlinemarket.constant.BaseEnum;
+import com.cmbchina.o2o.wd.onlinemarket.entity.base.BaseEntity;
+import org.joda.time.DateTime;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 
@@ -21,6 +24,10 @@ public class CopyUtil {
         }
         String[] result = new String[emptyNames.size()];
         return emptyNames.toArray(result);
+    }
+
+    public static void updateObject(BaseEntity entity){
+        entity.setModifyTime(new DateTime());
     }
 
 

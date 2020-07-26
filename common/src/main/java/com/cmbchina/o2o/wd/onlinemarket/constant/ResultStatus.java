@@ -8,7 +8,7 @@ public enum ResultStatus {
     PASSWORD_NOT_CONSISTENCY(503, "输入的密码和确认密码不一致！"),
     USER_NOT_FOUND_ERROR(504, "登录失败，未查找到对应用户！"),
     PASSWORD_NOT_MATCH_ERROR(503, "用户登录失败，密码错误！"),
-    AUTHRIZATION_ERROR(505, "用户登录失败，认证出错！"),
+    AUTHRIZATION_ERROR(505, "用户登录信息获取失败，认证出错！"),
 
     MICROSERVICE_NOT_AVAILABLE(510, "微服务不可用！");
 

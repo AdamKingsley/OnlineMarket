@@ -27,7 +27,7 @@ public class GoodsController {
 
 
     @GetMapping("category/list")
-    public Result catList(@RequestParam("root_id") Long rootId) {
+    public Result catList(@RequestParam(required = false) Long rootId) {
         // 目前目录是两层，虽然支持多层，但是层数越多，查询性能越差
         return goodsService.getCategoryList(rootId == null ? 0L : rootId);
     }
@@ -38,7 +38,7 @@ public class GoodsController {
     }
 
     @GetMapping("detail")
-    public Result goodsDetail(@RequestParam("goods_id") Long goodId) {
+    public Result goodsDetail(@RequestParam("goodsId") Long goodId) {
         return goodsService.getGoodsDetail(goodId);
     }
 }

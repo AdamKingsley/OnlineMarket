@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class GoodsAttr extends BaseIdEntity {
 
     @Column(name = "goods_id")
-    private long goodsId;
+    private Long goodsId;
 
     // 该配置信息
     @Column
@@ -36,26 +36,26 @@ public class GoodsAttr extends BaseIdEntity {
 
     // 该配置商品价格
     @Column
-    private double price;
+    private Double price;
 
 
     // 优惠折扣后，减掉的价格
     @Column(name = "discount_amount")
-    private double discountAmount;
+    private Double discountAmount;
 
     // 优惠折扣
     @Column(name = "discount_rate")
-    private double discountRate;
+    private Double discountRate;
 
     // 商品销售总数
     @Column(name = "saled_num")
-    private int saledNum;
+    private Integer saledNum;
 
     // 库存总数
     @Column(name = "store_num")
-    private int storeNum;
+    private Integer storeNum;
 
     // 该配置商品是否已经上架
     @Column(name = "on_sale")
-    private boolean onSale;
+    private Boolean onSale;
 }

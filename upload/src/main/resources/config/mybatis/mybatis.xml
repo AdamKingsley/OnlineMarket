@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!--设置启用数据库字段下划线映射到java对象的驼峰式命名属性，默认为false-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <typeAliases>
+        <typeAlias type="com.cmbchina.o2o.wd.onlinemarket.entity.User" alias="user"></typeAlias>
+        <typeAlias type="com.cmbchina.o2o.wd.onlinemarket.entity.Address" alias="address"></typeAlias>
+        <typeAlias type="com.cmbchina.o2o.wd.onlinemarket.entity.Goods" alias="goods"></typeAlias>
+        <typeAlias type="com.cmbchina.o2o.wd.onlinemarket.entity.GoodsAttr" alias="goods_attr"></typeAlias>
+        <typeAlias type="com.cmbchina.o2o.wd.onlinemarket.entity.GoodsCategory" alias="goods_category"></typeAlias>
+        <typeAlias type="com.cmbchina.o2o.wd.onlinemarket.entity.Merchant" alias="mercant"></typeAlias>
+        <typeAlias type="com.cmbchina.o2o.wd.onlinemarket.entity.Order" alias="order"></typeAlias>
+        <typeAlias type="com.cmbchina.o2o.wd.onlinemarket.entity.OrderDetail" alias="order_detail"></typeAlias>
+        <typeAlias type="com.cmbchina.o2o.wd.onlinemarket.entity.ShoppingCart" alias="shopping_cart"></typeAlias>
+        <!-- <typeAlias type="com.cmbchina.o2o.wd.onlinemarket.entity.Area" alias="area"></typeAlias> !-->
+    </typeAliases>
+</configuration>

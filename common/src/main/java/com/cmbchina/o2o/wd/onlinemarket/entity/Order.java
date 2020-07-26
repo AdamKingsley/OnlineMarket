@@ -29,14 +29,14 @@ public class Order extends BaseIdEntity {
     // private String address;
     // 地址ID
     @Column(name = "address_id")
-    private int addressId;
+    private Long addressId;
     // 价钱
     @Column
-    private double price;
+    private Double price;
 
     // 优惠额度
     @Column(name = "discount_amount")
-    private double discountAmount;
+    private Double discountAmount;
 
     // 用户id
     @Column(name = "user_id", length = 45)

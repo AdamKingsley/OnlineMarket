@@ -23,30 +23,30 @@ public class ShoppingCart extends BaseIdEntity {
 
     // 商品ID
     @Column(name = "goods_id")
-    private long goodsId;
+    private Long goodsId;
 
     @Column(name = "user_id", length = 45)
     private String userId;
 
     // 套餐ID
     @Column(name = "attr_id")
-    private long attrId;
+    private Long attrId;
     // 商户ID
     @Column(name = "merchant_id")
-    private int merchantId;
+    private Long merchantId;
 
 
     // 商品价格
     @Column
-    private double price;
+    private Double price;
 
     // 商品优惠价格
     @Column(name = "discount_amount")
-    private double discountAmount;
+    private Double discountAmount;
 
     // 商品个数
     @Column
-    private int count;
+    private Integer count;
 
     // 商品描述
     @Column

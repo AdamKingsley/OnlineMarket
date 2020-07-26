@@ -1,13 +1,11 @@
 package com.cmbchina.o2o.wd.onlinemarket.dto.account;
 
 import com.cmbchina.o2o.wd.onlinemarket.constant.UserType;
+import com.cmbchina.o2o.wd.onlinemarket.dto.BaseDto;
 import lombok.Data;
 
-import javax.management.relation.Role;
-import java.util.List;
-
 @Data
-public class UserDto {
+public class UserDto extends BaseDto {
     private String id;
     private String username;
     // private String password;
@@ -17,4 +15,6 @@ public class UserDto {
     private UserType type;
     // private List<Role> authorities;
     private int status;
+    private String avatar;
+    private String description;
 }

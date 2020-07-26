@@ -1,6 +1,7 @@
 package com.cmbchina.o2o.wd.onlinemarket.controller;
 
 
+import com.cmbchina.o2o.wd.onlinemarket.command.account.PasswordCommand;
 import com.cmbchina.o2o.wd.onlinemarket.command.account.UserCommand;
 import com.cmbchina.o2o.wd.onlinemarket.command.account.UserFilterCommand;
 import com.cmbchina.o2o.wd.onlinemarket.dto.PageResult;
@@ -33,7 +34,7 @@ public class ManagementController {
 
     @DeleteMapping("/{userId}")
     public Result removeUser(@PathVariable String userId) {
-        return managementService.frozenUser(userId, request);
+        return managementService.removeUser(userId, request);
     }
 
     @PostMapping("/add")
@@ -44,6 +45,11 @@ public class ManagementController {
     @PutMapping("/update")
     public Result updateUser(@RequestBody UserCommand command) {
         return managementService.updateUser(command, request);
+    }
+
+    @PutMapping("/update/password")
+    public Result updateUser(@RequestBody PasswordCommand command) {
+        return managementService.changePassword(command, request);
     }
 
     @PostMapping("/reset")

@@ -11,10 +11,18 @@ public class UserCommand {
     // 必传
     private UserType type;
 
+    private String email;
+
+    private String telephone;
+
     // 创建操作必传，更新操作可不传
     private String username;
     private String password;
 
     // 可以不传这些数据
     private String salt;
+
+    private Integer status;
+
+    private String description;
 }
