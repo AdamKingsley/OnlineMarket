@@ -33,7 +33,7 @@ public class Address extends BaseIdEntity {
     private String address;
     // 手机
     @Column(length = 30)
-    private String phone;
+    private String telephone;
 
     // 邮政编码
     @Column(name = "postal_code", length = 20)

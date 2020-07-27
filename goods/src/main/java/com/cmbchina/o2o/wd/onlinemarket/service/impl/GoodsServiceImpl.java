@@ -9,7 +9,6 @@ import com.cmbchina.o2o.wd.onlinemarket.dto.goods.CategoryDto;
 import com.cmbchina.o2o.wd.onlinemarket.dto.goods.GoodsAttrDto;
 import com.cmbchina.o2o.wd.onlinemarket.dto.goods.GoodsDetailDto;
 import com.cmbchina.o2o.wd.onlinemarket.dto.goods.GoodsDto;
-import com.cmbchina.o2o.wd.onlinemarket.entity.Goods;
 import com.cmbchina.o2o.wd.onlinemarket.entity.GoodsAttr;
 import com.cmbchina.o2o.wd.onlinemarket.entity.GoodsCategory;
 import com.cmbchina.o2o.wd.onlinemarket.mapper.GoodsAttrMapper;
@@ -20,7 +19,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
 import org.springframework.beans.BeanUtils;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
@@ -50,7 +48,7 @@ public class GoodsServiceImpl implements GoodsService {
             BeanUtils.copyProperties(category, dto);
             dtos.add(dto);
         });
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES).setData(dtos);
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS).setData(dtos);
     }
 
     @Override
@@ -93,7 +91,7 @@ public class GoodsServiceImpl implements GoodsService {
         GoodsDetailDto detailDto = new GoodsDetailDto();
         BeanUtils.copyProperties(dto,detailDto);
         detailDto.setAttrs(attrDtos);
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES).setData(detailDto);
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS).setData(detailDto);
     }
 
 }

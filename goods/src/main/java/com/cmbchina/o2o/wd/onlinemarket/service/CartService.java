@@ -1,6 +1,7 @@
 package com.cmbchina.o2o.wd.onlinemarket.service;
 
 import com.cmbchina.o2o.wd.onlinemarket.command.goods.CartCommand;
+import com.cmbchina.o2o.wd.onlinemarket.command.goods.ShoppingCartFilterCommand;
 import com.cmbchina.o2o.wd.onlinemarket.dto.PageResult;
 import com.cmbchina.o2o.wd.onlinemarket.dto.Result;
 
@@ -13,5 +14,5 @@ public interface CartService {
 
     Result removeCart(Long attrId, HttpServletRequest request);
 
-    PageResult getCartList(HttpServletRequest request);
+    PageResult getCartList(ShoppingCartFilterCommand command, HttpServletRequest request);
 }

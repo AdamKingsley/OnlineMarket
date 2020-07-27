@@ -44,7 +44,11 @@ public class Order extends BaseIdEntity {
 
     // 订单状态
     @Column(name = "order_status", type = MySqlTypeConstant.INT, length = 5)
-    private OrderStatus orderStatus;
+    private OrderStatus orderStatus=OrderStatus.SUBMIT;
+
+
+    @Column(name = "merchant_id")
+    private Long merchantId;
 
     // 订单详情 一对多，自行获取list
     // @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)

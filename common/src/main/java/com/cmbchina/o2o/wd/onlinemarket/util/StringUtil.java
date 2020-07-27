@@ -2,6 +2,10 @@ package com.cmbchina.o2o.wd.onlinemarket.util;
 
 import org.springframework.util.StringUtils;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -72,5 +76,13 @@ public class StringUtil {
     public static String wrap(String name, String s) {
         StringBuffer buffer = new StringBuffer().append(s).append(name).append(s);
         return buffer.toString();
+    }
+
+    public static String genereteOrderCode(){
+        DateFormat df = new SimpleDateFormat("yyyyMMdd");
+        Calendar calendar = Calendar.getInstance();
+        String dateName = df.format(calendar.getTime());
+        String code = dateName + UUID.randomUUID().toString().replaceAll("-", "");
+        return code;
     }
 }

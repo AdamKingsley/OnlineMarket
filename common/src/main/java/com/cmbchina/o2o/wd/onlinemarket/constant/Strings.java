@@ -23,4 +23,11 @@ public class Strings {
     public static final String TYPE = "type";
     public static final String PARENT_ID = "parentId";
     public static final String GOODS_ID = "goodsId";
+    public static final String ATTR_ID = "attrId";
+    public static final String NAME = "name";
+    public static final String ADDRESS = "address";
+    public static final String CITY = "city";
+    public static final String AREA = "area";
+    public static final String PROVINCE = "province";
+    public static final String POSTAL_CODE = "postalCode";
 }

@@ -24,31 +24,31 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public Result addGoods(GoodsCommand command, HttpServletRequest request) {
         // TODO implement
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES);
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS);
     }
 
     @Override
     public Result updateGoods(GoodsCommand command, HttpServletRequest request) {
         // TODO implement
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES);
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS);
     }
 
     @Override
     public Result removeGoods(Long id, HttpServletRequest request) {
         // TODO implement
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES);
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS);
     }
 
     @Override
     public Result removeAttr(Long id, HttpServletRequest request) {
         // TODO implement
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES);
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS);
     }
 
     @Override
     public Result getCategoryList(long l) {
         // TODO implement
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES);
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS);
     }
 
     @Override
@@ -60,6 +60,6 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public Result getGoodsDetail(Long goodId) {
         // TODO implement
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES);
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS);
     }
 }

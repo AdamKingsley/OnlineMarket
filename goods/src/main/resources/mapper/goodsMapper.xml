@@ -19,10 +19,10 @@
         on a.merchant_id = b.id
         where a.is_deleted = 0
         <if test="name!=null and name!=''">
-            AND a.name = CONCAT(CONCAT('%',#{name}),'%')
+            AND a.name like CONCAT(CONCAT('%',#{name}),'%')
         </if>
         <if test="label!=null and label!=''">
-            AND a.name = CONCAT(CONCAT('%',#{label}),'%')
+            AND a.name like CONCAT(CONCAT('%',#{label}),'%')
         </if>
         <if test="startTime!=null">
             AND a.modify_time &gt;= #{startTime}

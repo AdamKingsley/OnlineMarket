@@ -1,7 +1,7 @@
 package com.cmbchina.o2o.wd.onlinemarket.constant;
 
 public enum ResultStatus {
-    OPERATION_SUCEES(200, "操作成功！"),
+    OPERATION_SUCCESS(200, "操作成功！"),
     SERVICE_ERROR(500, "服务后台内部出现错误，请联系管理员！"),
     INFORMITION_INVALID(501, "请检查信息正确性和完备性！"),
     OPERATION_NOT_PERMITTED(502, "用户无操作权限，请登录后重试！"),
@@ -9,7 +9,7 @@ public enum ResultStatus {
     USER_NOT_FOUND_ERROR(504, "登录失败，未查找到对应用户！"),
     PASSWORD_NOT_MATCH_ERROR(503, "用户登录失败，密码错误！"),
     AUTHRIZATION_ERROR(505, "用户登录信息获取失败，认证出错！"),
-
+    REPOSITORY_NOT_ENOUGH(506,"库存不足，请删掉不足的商品重试"),
     MICROSERVICE_NOT_AVAILABLE(510, "微服务不可用！");
 
     String message;

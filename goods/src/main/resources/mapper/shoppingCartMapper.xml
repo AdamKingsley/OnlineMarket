@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cmbchina.o2o.wd.onlinemarket.mapper.ShoppingCartMapper">
+    <sql id="cartTableName">
+       t_shopping_cart
+    </sql>
+    <sql id="goodsTableName">
+       t_goods
+    </sql>
+    <sql id="attrTableName">
+       t_goods_attr
+    </sql>
+    <sql id="merchantTableName">
+       t_merchant
+    </sql>
+
+    <!--    private String img;-->
+    <!--    private Long goodsId;-->
+    <!--    // private String userId;-->
+    <!--    private Long attrId;-->
+    <!--    private Long merchantId;-->
+    <!--    private String merchantName;-->
+    <!--    private Double goodsPrice;-->
+    <!--    private Double goodsDiscountAmount;-->
+    <!--    private Double goodsDiscountRate;-->
+    <!--    private Double attrPrice;-->
+    <!--    private Double attrDiscountAmount;-->
+    <!--    private Double attrDiscountRate;-->
+    <!--    private Integer count;-->
+    <!--    private String title;-->
+    <!--    private String attrTitle;-->
+
+    <select id="selectCartList" parameterType="shopping_cart_filter_command" resultType="cart_dto">
+        select a.*, d.name as merchant_name,b.price as goods_price,
+        b.discount_amount as goods_discount_amount, b.discount_rate as goods_discount_rate,
+        b.name as goods_name,c.title as attr_name,c.price as attr_price,
+        c.discount_amount as attr_discount_amount, c.discount_rate as attr_discount_rate
+        from
+        <include refid="cartTableName"/>
+        as a
+        left join
+        <include refid="goodsTableName"/>
+        as b on a.goods_id = b.id
+        left join
+        <include refid="attrTableName"/>
+        as c on a.attr_id = c.id
+        left join
+        <include refid="merchantTableName"/>
+        as d on b.merchant_id = d.id
+        where a.is_deleted = 0 and a.user_id = #{userId}
+        <if test="name!=null and name!=''">
+            AND (a.title like CONCAT(CONCAT('%',#{name}),'%') or a.attr_title like CONCAT(CONCAT('%',#{name}),'%'))
+        </if>
+        <if test="label!=null and label!=''">
+            AND b.label like CONCAT(CONCAT('%',#{label}),'%')
+        </if>
+        <if test="startTime!=null">
+            AND a.modify_time &gt;= #{startTime}
+        </if>
+        <if test="endTime!=null">
+            AND a.modify_time &lt;= #{endTime}
+        </if>
+        order by a.modify_time desc
+        <!--        <if test="orderBy!=null and orderBy!=''">-->
+        <!--            order by a.${orderBy} desc-->
+        <!--        </if>-->
+    </select>
+
+</mapper>

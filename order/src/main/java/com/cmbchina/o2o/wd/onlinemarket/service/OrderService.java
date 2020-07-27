@@ -2,6 +2,7 @@ package com.cmbchina.o2o.wd.onlinemarket.service;
 
 import com.cmbchina.o2o.wd.onlinemarket.command.order.OrderCommand;
 import com.cmbchina.o2o.wd.onlinemarket.command.order.OrderFilterCommand;
+import com.cmbchina.o2o.wd.onlinemarket.command.order.OrderGoodsCommand;
 import com.cmbchina.o2o.wd.onlinemarket.dto.PageResult;
 import com.cmbchina.o2o.wd.onlinemarket.dto.Result;
 
@@ -15,9 +16,9 @@ public interface OrderService {
 
     Result addOrder(OrderCommand command, HttpServletRequest request);
 
-    Result addOrderBatch(List<OrderCommand> commands, HttpServletRequest request);
-
     Result updateOrder(OrderCommand command, HttpServletRequest request);
 
     Result removeOrder(Long id, HttpServletRequest request);
+
+    Result lockRepository(OrderGoodsCommand command);
 }

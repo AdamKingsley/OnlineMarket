@@ -6,7 +6,6 @@ import com.cmbchina.o2o.wd.onlinemarket.constant.Strings;
 import com.cmbchina.o2o.wd.onlinemarket.dto.Result;
 import com.cmbchina.o2o.wd.onlinemarket.dto.merchant.MerchantDto;
 import com.cmbchina.o2o.wd.onlinemarket.entity.Merchant;
-import com.cmbchina.o2o.wd.onlinemarket.entity.User;
 import com.cmbchina.o2o.wd.onlinemarket.mapper.MerchantMapper;
 import com.cmbchina.o2o.wd.onlinemarket.service.AccountService;
 import com.cmbchina.o2o.wd.onlinemarket.util.CopyUtil;
@@ -45,7 +44,7 @@ public class AccountServiceImpl implements AccountService {
             CopyUtil.updateObject(merchant);
             merchantMapper.updateByPrimaryKey(merchant);
         }
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES).setMessage("更新商户信息成功！");
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS).setMessage("更新商户信息成功！");
     }
 
     @Override
@@ -61,7 +60,7 @@ public class AccountServiceImpl implements AccountService {
         if (null!=merchant){
             BeanUtils.copyProperties(merchant,dto);
         }
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES).setData(merchant);
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS).setData(merchant);
     }
 
     @Override
@@ -71,6 +70,6 @@ public class AccountServiceImpl implements AccountService {
         if (null!=merchant){
             BeanUtils.copyProperties(merchant,dto);
         }
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES).setData(merchant);
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS).setData(merchant);
     }
 }

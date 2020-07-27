@@ -41,10 +41,6 @@ public class OrderController {
         return orderService.addOrder(command, request);
     }
 
-    @PostMapping("/addBatch")
-    public Result addOrder(@RequestBody List<OrderCommand> commands) {
-        return orderService.addOrderBatch(commands, request);
-    }
 
     @PutMapping("/update")
     public Result updateOrder(@RequestBody OrderCommand command) {

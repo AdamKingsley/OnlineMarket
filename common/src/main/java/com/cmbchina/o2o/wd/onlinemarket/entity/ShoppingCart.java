@@ -37,12 +37,12 @@ public class ShoppingCart extends BaseIdEntity {
 
 
     // 商品价格
-    @Column
-    private Double price;
+    // @Column
+    // private Double price;
 
     // 商品优惠价格
-    @Column(name = "discount_amount")
-    private Double discountAmount;
+    // @Column(name = "discount_amount")
+    // private Double discountAmount;
 
     // 商品个数
     @Column
@@ -58,6 +58,6 @@ public class ShoppingCart extends BaseIdEntity {
 
     // 商品code
     @Column(name = "attr_code", length = 50)
-    private String goodsCode;
+    private String attrCode;
 
 }

@@ -99,7 +99,7 @@ public class ManagementServiceImpl implements ManagementService {
         // 根据盐度和密码进行md5加密生成密码
         user.setPassword(Encryption.encodeMd5(user.getPassword() + user.getSalt()));
         int state = userMapper.insert(user);
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES).setMessage("添加账户成功！");
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS).setMessage("添加账户成功！");
     }
 
     @Override
@@ -107,7 +107,7 @@ public class ManagementServiceImpl implements ManagementService {
         User user = userMapper.selectByPrimaryKey(command.getId());
         BeanUtils.copyProperties(command, user, CopyUtil.getNullPropertyNames(command));
         userMapper.updateByPrimaryKey(user);
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES).setMessage("更新用户信息成功！");
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS).setMessage("更新用户信息成功！");
     }
 
     @Override
@@ -115,7 +115,7 @@ public class ManagementServiceImpl implements ManagementService {
         User user = userMapper.selectByPrimaryKey(userId);
         user.setIsDeleted(true);
         userMapper.updateByPrimaryKey(user);
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES).setMessage("删除用户成功！");
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS).setMessage("删除用户成功！");
     }
 
     @Override
@@ -140,19 +140,19 @@ public class ManagementServiceImpl implements ManagementService {
         // 根据盐度和密码进行md5加密生成密码
         user.setPassword(Encryption.encodeMd5(user.getPassword() + user.getSalt()));
         userMapper.updateByPrimaryKey(user);
-        return  Result.success().setStatus(ResultStatus.OPERATION_SUCEES).setMessage("更新用户密码成功");
+        return  Result.success().setStatus(ResultStatus.OPERATION_SUCCESS).setMessage("更新用户密码成功");
     }
 
     // 下面两个接口暂时用不到，均可被update接口替换
     @Override
     public Result frozenUser(String userId, HttpServletRequest request) {
         // TODO implement
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES);
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS);
     }
 
     @Override
     public Result resetUser(UserCommand command, HttpServletRequest request) {
         // TODO implement
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES);
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS);
     }
 }

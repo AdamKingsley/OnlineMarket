@@ -53,7 +53,7 @@ public class AccountServiceImpl implements AccountService {
         // 根据盐度和密码进行md5加密生成密码
         user.setPassword(Encryption.encodeMd5(user.getPassword() + user.getSalt()));
         int state = userMapper.insert(user);
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES).setMessage("注册账户成功！");
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS).setMessage("注册账户成功！");
     }
 
     @Override
@@ -65,7 +65,7 @@ public class AccountServiceImpl implements AccountService {
             // 代码有点牵强
             Role role = (Role) userDetail.getAuthorities().iterator().next();
             userDto.setType(UserType.getByValue(role.getId().intValue()));
-            return Result.success().setData(userDto).setStatus(ResultStatus.OPERATION_SUCEES).setDescription("获取用户信息成功！");
+            return Result.success().setData(userDto).setStatus(ResultStatus.OPERATION_SUCCESS).setDescription("获取用户信息成功！");
         }
         // 未登录,请登录后重试该操作
         return Result.fail().setStatus(ResultStatus.OPERATION_NOT_PERMITTED);
@@ -83,6 +83,6 @@ public class AccountServiceImpl implements AccountService {
         BeanUtils.copyProperties(command, user, CopyUtil.getNullPropertyNames(command));
         CopyUtil.updateObject(user);
         userMapper.updateByPrimaryKey(user);
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES).setDescription("更新用户个人信息成功！");
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS).setDescription("更新用户个人信息成功！");
     }
 }

@@ -1,6 +1,7 @@
 package com.cmbchina.o2o.wd.onlinemarket.controller;
 
 import com.cmbchina.o2o.wd.onlinemarket.command.goods.CartCommand;
+import com.cmbchina.o2o.wd.onlinemarket.command.goods.ShoppingCartFilterCommand;
 import com.cmbchina.o2o.wd.onlinemarket.dto.PageResult;
 import com.cmbchina.o2o.wd.onlinemarket.dto.Result;
 import com.cmbchina.o2o.wd.onlinemarket.service.CartService;
@@ -24,8 +25,8 @@ public class CartController {
     private HttpServletResponse response;
 
     @GetMapping("/list")
-    private PageResult cartList() {
-        return cartService.getCartList(request);
+    public PageResult cartList(@ModelAttribute ShoppingCartFilterCommand command) {
+        return cartService.getCartList(command, request);
     }
 
     @PostMapping("/add")
@@ -38,8 +39,8 @@ public class CartController {
         return cartService.updateCart(command, request);
     }
 
-    @DeleteMapping("/{attrId}")
-    public Result removeCart(@PathVariable Long attrId) {
-        return cartService.removeCart(attrId, request);
+    @DeleteMapping("/{id}")
+    public Result removeCart(@PathVariable Long id) {
+        return cartService.removeCart(id, request);
     }
 }

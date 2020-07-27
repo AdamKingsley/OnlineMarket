@@ -31,12 +31,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Result getOrderDetail(Long id, HttpServletRequest request) {
         //TODO implement
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES);
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS);
     }
 
     @Override
     public Result updateOrder(OrderCommand command, HttpServletRequest request) {
         //TODO implement
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCEES);
+        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS);
     }
 }
