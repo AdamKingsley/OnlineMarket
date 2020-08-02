@@ -136,9 +136,9 @@ public class ManagementServiceImpl implements ManagementService {
         // 开始更新密码
         user.setSalt(RandomStringUtils.random(SALT_LENGTH, true, true));
         // 随机生成用户uuid，作为主键标识用户id
-        user.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+        //user.setId(UUID.randomUUID().toString().replaceAll("-", ""));
         // 根据盐度和密码进行md5加密生成密码
-        user.setPassword(Encryption.encodeMd5(user.getPassword() + user.getSalt()));
+        user.setPassword(Encryption.encodeMd5(command.getPassword() + user.getSalt()));
         userMapper.updateByPrimaryKey(user);
         return  Result.success().setStatus(ResultStatus.OPERATION_SUCCESS).setMessage("更新用户密码成功");
     }

@@ -11,12 +11,14 @@ import java.util.List;
 
 @Data
 public class UserDetail implements UserDetails {
+    private static final long serialVersionUID = 1L;
     private String id;
     private String username;
     private String password;
     private String salt;
     private String telephone;
     private String email;
+    private String avatar;
     private List<Role> authorities = Lists.newArrayList();
 
     @Override

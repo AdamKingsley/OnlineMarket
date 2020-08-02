@@ -143,16 +143,17 @@ public class CartServiceImpl implements CartService {
             BeanUtils.copyProperties(cartDto, cart);
             cart.setTitle(cartDto.getGoodsName());
             // 计算价格
-            double price = 0;
+            double price = 0.0;
             double disAccount = 0.0;
             // 如果存在attr产品
-            // 先减再打折
+            // 折后减
             if (cartDto.getAttrPrice() != null && cartDto.getAttrPrice() != 0.0) {
+                // 原价计算
                 price = cartDto.getAttrPrice() * cartDto.getCount();
-                disAccount = price - (price - cartDto.getAttrDiscountAmount()) * (1 - cartDto.getAttrDiscountRate());
+                disAccount = price * (1 - cartDto.getAttrDiscountRate()/100.0) - cartDto.getAttrDiscountAmount()*cartDto.getCount();
             } else {
                 price = cartDto.getGoodsPrice() * cartDto.getCount();
-                disAccount = price - (price - cartDto.getGoodsDiscountAmount()) * (1 - cartDto.getGoodsDiscountRate());
+                disAccount =price * (1 - cartDto.getGoodsDiscountRate()/100.0) - cartDto.getGoodsDiscountAmount()*cartDto.getCount();
             }
             cart.setPrice(Math.round(price*100)/100.0);
             cart.setDiscountAmount(Math.round(disAccount*100)/100.0);

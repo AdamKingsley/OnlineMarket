@@ -8,6 +8,9 @@ public class MerchantCommand {
     // private String userId;
     // 商家名称
     private String name;
+    private String province;
+    private String city;
+    private String area;
     private String address;
     private Long addressId;
     private String description;

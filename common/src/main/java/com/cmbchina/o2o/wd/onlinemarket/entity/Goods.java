@@ -45,7 +45,7 @@ public class Goods extends BaseIdEntity {
 
     // 商品销售总数
     @Column(name = "saled_num")
-    private Integer saledNum;
+    private Integer saledNum = 0 ;
 
     // 库存总数
     @Column(name = "store_num")
@@ -55,7 +55,7 @@ public class Goods extends BaseIdEntity {
     @Column(name = "category_id")
     private Long categoryId;
 
-    // 商品所属商家
+    // 商品所属商家1
     @Column(name = "merchant_id")
     private Long merchantId;
 

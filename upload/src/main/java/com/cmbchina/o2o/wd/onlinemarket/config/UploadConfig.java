@@ -13,8 +13,14 @@ import org.springframework.context.annotation.PropertySource;
 @Data
 public class UploadConfig {
 
+    @Value(value = "${upload.images.base-path}")
+    private String basePath;
+
     @Value(value = "${upload.images.avatar-path}")
     private String avatarPath;
+
+    @Value(value = "${upload.images.banner-path}")
+    private String bannerPath;
 
     @Value(value = "${upload.images.goods-path}")
     private String goodsPath;

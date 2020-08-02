@@ -8,6 +8,8 @@ import com.gitee.sunchenbin.mybatis.actable.annotation.IsKey;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -17,9 +19,7 @@ import javax.persistence.MappedSuperclass;
 // @EnableSnakeToCamel
 public class BaseIdEntity extends BaseEntity {
 
-    // @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @IsKey
     @IsAutoIncrement
     @Column

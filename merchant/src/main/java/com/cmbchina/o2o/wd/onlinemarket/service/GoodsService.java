@@ -16,9 +16,7 @@ public interface GoodsService {
 
     Result removeAttr(Long id, HttpServletRequest request);
 
-    Result getCategoryList(long l);
-
-    PageResult getGoodsList(GoodsFilterCommand command);
+    PageResult getGoodsList(GoodsFilterCommand command, HttpServletRequest request);
 
     Result getGoodsDetail(Long goodId);
 }

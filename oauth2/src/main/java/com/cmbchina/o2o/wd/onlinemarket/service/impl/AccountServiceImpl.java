@@ -85,4 +85,17 @@ public class AccountServiceImpl implements AccountService {
         userMapper.updateByPrimaryKey(user);
         return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS).setDescription("更新用户个人信息成功！");
     }
+
+    @Override
+    public Result obtainUserDetail(Principal user) {
+        if (user instanceof OAuth2Authentication) {
+            UserDetail userDetail = (UserDetail) ((OAuth2Authentication) user).getUserAuthentication().getPrincipal();
+            String id = userDetail.getId();
+            User entity = userMapper.selectByPrimaryKey(id);
+            UserDto dto = new UserDto();
+            BeanUtils.copyProperties(entity,dto);
+            return Result.success().setData(dto);
+        }
+        return Result.fail();
+    }
 }

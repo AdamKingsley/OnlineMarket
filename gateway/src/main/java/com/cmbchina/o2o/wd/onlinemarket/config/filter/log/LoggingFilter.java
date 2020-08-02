@@ -8,6 +8,7 @@ import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
 
+import javax.annotation.meta.Exclusive;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,6 +19,8 @@ import java.util.Map;
 @Component
 @Slf4j
 public class LoggingFilter extends ZuulFilter {
+
+    private static final String EXCLUSIVE_RESPONSE_URL = "/upload/image";
 
     @Override
     public String filterType() {
@@ -74,7 +77,12 @@ public class LoggingFilter extends ZuulFilter {
                     }
                 }
             }
-            // 打印response
+            if (interfaceMethod.startsWith(EXCLUSIVE_RESPONSE_URL)){
+                // 请求静态资源文件的请求需要过滤，不能获取流重新写入
+                log.info("Response Body : = {}", interfaceMethod);
+                return null;
+            }
+            //打印response
             InputStream out = ctx.getResponseDataStream();
             String outBody = StreamUtils.copyToString(out, Charset.forName("UTF-8"));
             log.info("Response Body : = {}", outBody);

@@ -10,4 +10,6 @@ public interface GoodsService {
     PageResult getGoodsList(GoodsFilterCommand command);
 
     Result getGoodsDetail(Long goodId);
+
+    Result getCategory(Long id);
 }

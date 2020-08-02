@@ -1,5 +1,8 @@
 server:
   port: 8086
+  tomcat:
+    # https://blog.csdn.net/daweozai/article/details/103575718
+    max-swallow-size: 100MB
 
 spring:
   datasource:
@@ -23,6 +26,12 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
+  servlet:
+    multipart:
+      max-file-size: 1MB
+      max-request-size: 20MB
+      enabled: true
+      file-size-threshold: 0
 # logging config
 logging:
   config: classpath:config/log/logback-dev.xml
@@ -35,6 +44,8 @@ security:
 
 upload:
   images:
-    avatar-path: F:/upload/images/avatar/
-    goods-path: F:/upload/images/goods/
-    goods-attr-path: F:/upload/images/goods_attr/
+    base-path: F:/upload/images/
+    avatar-path: avatar/
+    banner-path: banner/
+    goods-path: goods/
+    goods-attr-path: goods_attr/

@@ -1,6 +1,5 @@
 package com.cmbchina.o2o.wd.onlinemarket.entity;
 
-import com.cmbchina.o2o.wd.onlinemarket.config.processor.EnableSnakeToCamel;
 import com.cmbchina.o2o.wd.onlinemarket.entity.base.BaseIdEntity;
 import com.gitee.sunchenbin.mybatis.actable.annotation.Column;
 import com.gitee.sunchenbin.mybatis.actable.annotation.Table;

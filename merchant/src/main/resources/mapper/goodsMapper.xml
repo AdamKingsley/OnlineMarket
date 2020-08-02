@@ -7,9 +7,12 @@
     <sql id="merchantTableName">
        t_merchant
     </sql>
+    <sql id="categoryTableName">
+       t_goods_category
+    </sql>
 
-    <select id="selectGoodsList" parameterType="goods_filter_command" resultType="goods_dto">
-        select a.*, b.name
+    <select id="selectGoodsList" parameterType="goods_filter_command" resultType="merchant_goods_dto">
+        select a.*, b.name,c.name as categoryName,c.parent_id as parentId
         from
         <include refid="goodsTableName"/>
         as a
@@ -17,6 +20,10 @@
         <include refid="merchantTableName"/>
         as b
         on a.merchant_id = b.id
+        left join
+        <include refid="categoryTableName"/>
+        as c
+        on a.category_id = c.id
         where a.is_deleted = 0
         <if test="name!=null and name!=''">
             AND a.name like CONCAT(CONCAT('%',#{name}),'%')
@@ -42,20 +49,6 @@
         <if test="orderBy!=null and orderBy!=''">
             order by ${orderBy} desc
         </if>
-    </select>
-
-
-    <select id="selectGoodsById" parameterType="long" resultType="goods_dto">
-        select a.*, b.name
-        from
-        <include refid="goodsTableName"/>
-        as a
-        left join
-        <include refid="merchantTableName"/>
-        as b
-        on a.merchant_id = b.id
-        where a.is_deleted = 0
-        and a.id=#{id}
     </select>
 
 </mapper>

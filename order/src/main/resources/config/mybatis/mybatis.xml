@@ -17,6 +17,9 @@
         <typeAlias type="com.cmbchina.o2o.wd.onlinemarket.entity.Order" alias="order"></typeAlias>
         <typeAlias type="com.cmbchina.o2o.wd.onlinemarket.entity.OrderDetail" alias="order_detail"></typeAlias>
         <typeAlias type="com.cmbchina.o2o.wd.onlinemarket.entity.ShoppingCart" alias="shopping_cart"></typeAlias>
+        <typeAlias type="com.cmbchina.o2o.wd.onlinemarket.command.order.OrderFilterCommand" alias="order_filter_command"></typeAlias>
+        <typeAlias type="com.cmbchina.o2o.wd.onlinemarket.dto.order.OrderDto" alias="order_dto"></typeAlias>
+        <typeAlias type="com.cmbchina.o2o.wd.onlinemarket.dto.order.OrderDetailDto" alias="order_detail_dto"></typeAlias>
         <!-- <typeAlias type="com.cmbchina.o2o.wd.onlinemarket.entity.Area" alias="area"></typeAlias> !-->
     </typeAliases>
 </configuration>

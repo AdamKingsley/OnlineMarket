@@ -49,7 +49,7 @@ public class GoodsAttr extends BaseIdEntity {
 
     // 商品销售总数
     @Column(name = "saled_num")
-    private Integer saledNum;
+    private Integer saledNum = 0;
 
     // 库存总数
     @Column(name = "store_num")

@@ -4,15 +4,15 @@ import lombok.Data;
 
 @Data
 public class MerchantGoodAttrDto {
-    private long id;
-    private long goodsId;
+    private Long id;
+    private Long goodsId;
     private String title;
     private String image;
     private String code;
-    private double price;
-    private double discountAmount;
-    private double discountRate;
-    private int saledNum;
-    private int storeNum;
-    private boolean onSale;
+    private Double price;
+    private Double discountAmount;
+    private Double discountRate;
+    private Integer saledNum;
+    private Integer storeNum;
+    private Boolean onSale;
 }

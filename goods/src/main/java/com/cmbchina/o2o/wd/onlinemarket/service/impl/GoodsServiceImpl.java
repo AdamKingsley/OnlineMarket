@@ -9,6 +9,7 @@ import com.cmbchina.o2o.wd.onlinemarket.dto.goods.CategoryDto;
 import com.cmbchina.o2o.wd.onlinemarket.dto.goods.GoodsAttrDto;
 import com.cmbchina.o2o.wd.onlinemarket.dto.goods.GoodsDetailDto;
 import com.cmbchina.o2o.wd.onlinemarket.dto.goods.GoodsDto;
+import com.cmbchina.o2o.wd.onlinemarket.entity.Goods;
 import com.cmbchina.o2o.wd.onlinemarket.entity.GoodsAttr;
 import com.cmbchina.o2o.wd.onlinemarket.entity.GoodsCategory;
 import com.cmbchina.o2o.wd.onlinemarket.mapper.GoodsAttrMapper;
@@ -54,8 +55,8 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public PageResult getGoodsList(GoodsFilterCommand command) {
         PageHelper.startPage(command.getPageNum(), command.getPageSize());
-        List<GoodsDto> list = goodsMapper.selectGoodsList(command);
         processCategory(command);
+        List<GoodsDto> list = goodsMapper.selectGoodsList(command);
         PageInfo page = new PageInfo(list);
         PageResult result = PageResult.success();
         result.setCurrentPage(command.getPageNum()).setSize(command.getPageSize()).setTotalNum(page.getTotal()).setTotalPage(page.getPages());
@@ -77,6 +78,7 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public Result getGoodsDetail(Long goodId) {
+        Goods goods = goodsMapper.selectByPrimaryKey(goodId);
         GoodsDto dto = goodsMapper.selectGoodsById(goodId);
         Example example = new Example(GoodsAttr.class);
         example.createCriteria().andEqualTo(Strings.IS_DELETED,false)
@@ -86,12 +88,27 @@ public class GoodsServiceImpl implements GoodsService {
         goodsAttrs.forEach(goodsAttr -> {
             GoodsAttrDto attrDto = new GoodsAttrDto();
             BeanUtils.copyProperties(goodsAttr,attrDto);
+            if (goodsAttr.getIsDeleted() || goodsAttr.getSaledNum()>=goodsAttr.getStoreNum()){
+                dto.setSelective(false);
+            }
             attrDtos.add(attrDto);
         });
         GoodsDetailDto detailDto = new GoodsDetailDto();
         BeanUtils.copyProperties(dto,detailDto);
         detailDto.setAttrs(attrDtos);
+        if (goods.getIsDeleted() || goods.getSaledNum() >= goods.getStoreNum()){
+            detailDto.setSelective(false);
+        }
+        // detailDto.getAttrs().forEach(goodsAttrDto -> {});
         return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS).setData(detailDto);
+    }
+
+    @Override
+    public Result getCategory(Long id) {
+        GoodsCategory category = goodsCategoryMapper.selectByPrimaryKey(id);
+        CategoryDto dto = new CategoryDto();
+        BeanUtils.copyProperties(category,dto);
+        return Result.success().setData(dto);
     }
 
 }

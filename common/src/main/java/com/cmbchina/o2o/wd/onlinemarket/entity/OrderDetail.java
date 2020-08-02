@@ -69,6 +69,7 @@ public class OrderDetail extends BaseIdEntity {
 
     // 订单状态
     @Column(name = "order_status", type = MySqlTypeConstant.INT, length = 5)
+    @javax.persistence.Column(name = "order_status")
     private OrderStatus orderStatus = OrderStatus.SUBMIT;
 
 

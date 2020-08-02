@@ -6,5 +6,5 @@ import java.util.List;
 
 @Data
 public class MerchantGoodsDetailsDto extends MerchantGoodsDto {
-    private List<MerchantGoodAttrDto> atts;
+    private List<MerchantGoodAttrDto> attrs;
 }

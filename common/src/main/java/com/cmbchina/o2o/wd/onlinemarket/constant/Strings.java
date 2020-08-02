@@ -30,4 +30,6 @@ public class Strings {
     public static final String AREA = "area";
     public static final String PROVINCE = "province";
     public static final String POSTAL_CODE = "postalCode";
+    public static final CharSequence COMMA = ",";
+    public static final String MD5 = "md5";
 }

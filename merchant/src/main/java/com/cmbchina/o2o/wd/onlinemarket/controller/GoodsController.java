@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("/goods")
@@ -25,21 +26,14 @@ public class GoodsController {
     @Resource
     private HttpServletResponse response;
 
-
-    @GetMapping("category/list")
-    public Result catList(@RequestParam("root_id") Long rootId) {
-        // 目前目录是两层，虽然支持多层，但是层数越多，查询性能越差
-        return goodsService.getCategoryList(rootId == null ? 0L : rootId);
-    }
-
     @GetMapping("list")
     public PageResult goodsList(@ModelAttribute GoodsFilterCommand command) {
-        return goodsService.getGoodsList(command);
+        return goodsService.getGoodsList(command,request);
     }
 
-    @GetMapping("detail")
-    public Result goodsDetail(@RequestParam("goods_id") Long goodId) {
-        return goodsService.getGoodsDetail(goodId);
+    @GetMapping("detail/{id}")
+    public Result goodsDetail(@PathVariable("id") Long id) {
+        return goodsService.getGoodsDetail(id);
     }
 
 
@@ -55,12 +49,12 @@ public class GoodsController {
     }
 
 
-    @PutMapping("/remove/{id}")
+    @DeleteMapping("/remove/{id}")
     public Result removeGoods(@PathVariable Long id) {
         return goodsService.removeGoods(id, request);
     }
 
-    @PutMapping("/remove/attr/{id}")
+    @DeleteMapping("/remove/attr/{id}")
     public Result removeGoodsAttr(@PathVariable Long id) {
         return goodsService.removeAttr(id, request);
     }

@@ -23,6 +23,8 @@ public class SecurityResourceConfiguration extends ResourceServerConfigurerAdapt
                 .authorizeRequests()
                 .antMatchers("/account/oauth/token").permitAll()
                 .antMatchers("/account/oauth/**").permitAll()
+                // 获取静态图片资源也是可以
+                .antMatchers("/upload/image/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();

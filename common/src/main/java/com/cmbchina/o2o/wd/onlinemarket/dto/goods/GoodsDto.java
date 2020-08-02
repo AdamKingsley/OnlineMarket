@@ -20,11 +20,12 @@ public class GoodsDto extends BaseDto {
     private double price;
     private double discountAmount;
     private double discountRate;
-    private int saledNum;
-    private int storeNum;
+    // private int saledNum;
+    // private int storeNum;
     private long categoryId;
     private long merchantId;
     private String label;
     private long id;
+    private boolean isSelective = true;
 
 }

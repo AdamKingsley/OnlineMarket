@@ -3,6 +3,7 @@ package com.cmbchina.o2o.wd.onlinemarket.controller;
 
 import com.cmbchina.o2o.wd.onlinemarket.command.order.OrderCommand;
 import com.cmbchina.o2o.wd.onlinemarket.command.order.OrderFilterCommand;
+import com.cmbchina.o2o.wd.onlinemarket.command.order.OrderUpdateCommand;
 import com.cmbchina.o2o.wd.onlinemarket.dto.PageResult;
 import com.cmbchina.o2o.wd.onlinemarket.dto.Result;
 import com.cmbchina.o2o.wd.onlinemarket.service.OrderService;
@@ -31,9 +32,9 @@ public class OrderController {
         return orderService.getOrderList(command, request);
     }
 
-    @GetMapping("/detail/{id}")
-    public Result orderDetail(@PathVariable Long id) {
-        return orderService.getOrderDetail(id, request);
+    @GetMapping("/detail/{code}")
+    public Result orderDetail(@PathVariable String code) {
+        return orderService.getOrderDetail(code, request);
     }
 
     @PostMapping("/add")
@@ -43,11 +44,13 @@ public class OrderController {
 
 
     @PutMapping("/update")
-    public Result updateOrder(@RequestBody OrderCommand command) {
+    public Result updateOrder(@RequestBody OrderUpdateCommand command) {
         // 主要是更新order的状态
         return orderService.updateOrder(command, request);
     }
 
+    // 原则上不允许删除订单
+    @Deprecated
     @DeleteMapping("/{id}")
     public Result removeOrder(@PathVariable Long id) {
         return orderService.removeOrder(id, request);

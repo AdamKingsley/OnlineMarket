@@ -40,6 +40,11 @@ public class AccountController {
         return accountService.obtainUser(user);
     }
 
+    @GetMapping("/user/id")
+    public Result getById(Principal user) {
+        return accountService.obtainUserDetail(user);
+    }
+
     /**
      * @param command 用户注册的基本信息
      * @return 注册结果

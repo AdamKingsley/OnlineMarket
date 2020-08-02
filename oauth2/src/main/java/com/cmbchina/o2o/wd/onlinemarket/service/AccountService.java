@@ -18,4 +18,6 @@ public interface AccountService {
     Result obtainUser(Principal user);
 
     Result update(UserInfoCommand command, HttpServletRequest request);
+
+    Result obtainUserDetail(Principal user);
 }

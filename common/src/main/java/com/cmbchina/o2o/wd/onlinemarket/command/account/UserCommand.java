@@ -8,6 +8,7 @@ import lombok.Data;
 public class UserCommand {
     // 更新操作必传，创建可不传
     private String id;
+    private String avatar;
     // 必传
     private UserType type;
 

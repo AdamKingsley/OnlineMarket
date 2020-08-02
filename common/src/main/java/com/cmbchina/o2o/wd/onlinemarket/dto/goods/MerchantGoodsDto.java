@@ -10,13 +10,15 @@ public class MerchantGoodsDto extends BaseDto {
     private String name;
     private String imgs;
     private String description;
-    private double price;
-    private double discountAmount;
-    private double discountRate;
-    private int saledNum;
-    private int storeNum;
-    private long categoryId;
-    private long merchantId;
+    private Double price;
+    private Double discountAmount;
+    private Double discountRate;
+    private Integer saledNum;
+    private Integer storeNum;
+    private Long categoryId;
+    private String categoryName;
+    private Long categoryParentId;
+    private Long merchantId;
     private String label;
-    private long id;
+    private Long id;
 }

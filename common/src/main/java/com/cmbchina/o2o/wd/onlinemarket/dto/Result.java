@@ -31,11 +31,13 @@ public class Result {
     public Result setStatus(ResultStatus status) {
         this.status = status;
         this.code = status.getCode();
-        if (status.getCode() == 200) {
-            this.message = status.getMessage();
-        } else {
-            this.errorMessage = status.getMessage();
-        }
+        // if (status.getCode() == 200) {
+        //     this.message = status.getMessage();
+        // } else {
+        //     this.errorMessage = status.getMessage();
+        // }
+        this.message = status.getMessage();
+        this.errorMessage = status.getMessage();
         this.description = status.getMessage();
         return this;
     }

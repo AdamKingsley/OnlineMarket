@@ -32,6 +32,13 @@ public class GoodsController {
         return goodsService.getCategoryList(rootId == null ? 0L : rootId);
     }
 
+    @GetMapping("category/{id}")
+    public Result getCat(@PathVariable Long id) {
+        // 目前目录是两层，虽然支持多层，但是层数越多，查询性能越差
+        return goodsService.getCategory(id);
+    }
+
+
     @GetMapping("list")
     public PageResult goodsList(@ModelAttribute GoodsFilterCommand command) {
         return goodsService.getGoodsList(command);

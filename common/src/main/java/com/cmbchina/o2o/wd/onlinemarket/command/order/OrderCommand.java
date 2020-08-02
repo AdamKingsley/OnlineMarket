@@ -1,5 +1,6 @@
 package com.cmbchina.o2o.wd.onlinemarket.command.order;
 
+import com.cmbchina.o2o.wd.onlinemarket.constant.OrderStatus;
 import lombok.Data;
 import org.joda.time.DateTime;
 
@@ -13,4 +14,5 @@ public class OrderCommand {
     private Double price;
     private Double discountAmount;
     private String userId;
+    private OrderStatus orderStatus;
 }

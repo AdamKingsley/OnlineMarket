@@ -13,7 +13,8 @@ public class GoodsAttrDto {
     private double price;
     private double discountAmount;
     private double discountRate;
-    private int saledNum;
-    private int storeNum;
+    // private int saledNum;
+    // private int storeNum;
     private boolean onSale;
+    private boolean isSelective = true;
 }

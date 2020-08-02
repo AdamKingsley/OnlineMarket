@@ -48,4 +48,13 @@ public class Merchant extends BaseIdEntity {
 
     @Column(length = 45)
     private String email;
+
+    @Column
+    private String province;
+
+    @Column
+    private String city;
+
+    @Column
+    private String area;
 }
