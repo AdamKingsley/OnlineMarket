@@ -32,4 +32,5 @@ public class Strings {
     public static final String POSTAL_CODE = "postalCode";
     public static final CharSequence COMMA = ",";
     public static final String MD5 = "md5";
+    public static final String CODE = "code";
 }

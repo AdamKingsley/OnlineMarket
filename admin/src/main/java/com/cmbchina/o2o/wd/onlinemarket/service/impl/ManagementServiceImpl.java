@@ -143,16 +143,10 @@ public class ManagementServiceImpl implements ManagementService {
         return  Result.success().setStatus(ResultStatus.OPERATION_SUCCESS).setMessage("更新用户密码成功");
     }
 
-    // 下面两个接口暂时用不到，均可被update接口替换
-    @Override
-    public Result frozenUser(String userId, HttpServletRequest request) {
-        // TODO implement
-        return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS);
-    }
-
+    // 下面接口暂时用不到，可被update接口替换
     @Override
     public Result resetUser(UserCommand command, HttpServletRequest request) {
-        // TODO implement
+        // implement
         return Result.success().setStatus(ResultStatus.OPERATION_SUCCESS);
     }
 }

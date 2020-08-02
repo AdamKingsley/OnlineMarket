@@ -52,10 +52,9 @@ public class ManagementController {
         return managementService.changePassword(command, request);
     }
 
-    @PostMapping("/reset")
-    public Result resetUser(@RequestBody UserCommand command) {
-        return managementService.resetUser(command, request);
-    }
-
+    // @PostMapping("/reset")
+    // public Result resetUser(@RequestBody UserCommand command) {
+    //     return managementService.resetUser(command, request);
+    // }
 
 }

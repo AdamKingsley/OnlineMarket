@@ -42,7 +42,6 @@ public class AccountServiceImpl implements AccountService {
         if (!command.getConfirmPassword().equals(command.getPassword())) {
             return Result.fail().setStatus(ResultStatus.PASSWORD_NOT_CONSISTENCY);
         }
-        // TODO 如有必要验证手机号和邮箱的合法性
         User user = new User();
         //用户属性copy
         BeanUtils.copyProperties(command, user);

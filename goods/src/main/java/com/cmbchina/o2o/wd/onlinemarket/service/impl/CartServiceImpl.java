@@ -150,13 +150,13 @@ public class CartServiceImpl implements CartService {
             if (cartDto.getAttrPrice() != null && cartDto.getAttrPrice() != 0.0) {
                 // 原价计算
                 price = cartDto.getAttrPrice() * cartDto.getCount();
-                disAccount = price * (1 - cartDto.getAttrDiscountRate()/100.0) - cartDto.getAttrDiscountAmount()*cartDto.getCount();
+                disAccount = price - (price * (1 - cartDto.getAttrDiscountRate() / 100.0) - cartDto.getAttrDiscountAmount() * cartDto.getCount());
             } else {
                 price = cartDto.getGoodsPrice() * cartDto.getCount();
-                disAccount =price * (1 - cartDto.getGoodsDiscountRate()/100.0) - cartDto.getGoodsDiscountAmount()*cartDto.getCount();
+                disAccount = price - (price * (1 - cartDto.getGoodsDiscountRate() / 100.0) - cartDto.getGoodsDiscountAmount() * cartDto.getCount());
             }
-            cart.setPrice(Math.round(price*100)/100.0);
-            cart.setDiscountAmount(Math.round(disAccount*100)/100.0);
+            cart.setPrice(Math.round(price * 100) / 100.0);
+            cart.setDiscountAmount(Math.round(disAccount * 100) / 100.0);
             carts.add(cart);
         });
         return carts;

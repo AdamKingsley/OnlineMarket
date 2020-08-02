@@ -7,16 +7,11 @@ import lombok.Data;
 public class AddressCommand {
     private Long id;
     private String name;
-
     private String province;
-
     private String city;
-
     private String area;
-
     private String address;
     private String telephone;
-
     private String postalCode;
 
 }

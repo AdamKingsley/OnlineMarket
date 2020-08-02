@@ -68,7 +68,8 @@ public class LoggingFilter extends ZuulFilter {
                     //post请求目前获取userFlag，user参数只支持multipart/form-data，application/json，对于其他方式不记录用户信息
                     if (conType.contains("multipart/form-data") || conType.contains("application/json")) {
                         if (conType.contains("multipart/form-data")) {
-                            // TODO 处理文件日志
+                            //  处理文件日志
+                            log.info("request content type is multipart/form-data, upload file operation!");
                             // reqBody = JsonUtil.toString(MultiPartFormDataToJson.toMap(reqBody));
                         } else {
                             // 默认content-type传json-->application/json

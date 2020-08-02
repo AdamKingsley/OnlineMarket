@@ -11,12 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 public interface ManagementService {
     PageResult getUserList(UserFilterCommand command, HttpServletRequest request);
 
-    Result frozenUser(String userId, HttpServletRequest request);
-
     Result addUser(UserCommand command, HttpServletRequest request);
 
     Result updateUser(UserCommand command, HttpServletRequest request);
 
+    @Deprecated
     Result resetUser(UserCommand command, HttpServletRequest request);
 
     Result removeUser(String userId, HttpServletRequest request);

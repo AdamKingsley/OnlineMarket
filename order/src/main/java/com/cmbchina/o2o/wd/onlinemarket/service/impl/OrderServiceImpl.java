@@ -1,9 +1,8 @@
 package com.cmbchina.o2o.wd.onlinemarket.service.impl;
 
-import com.cmbchina.o2o.wd.onlinemarket.command.order.OrderCommand;
-import com.cmbchina.o2o.wd.onlinemarket.command.order.OrderFilterCommand;
-import com.cmbchina.o2o.wd.onlinemarket.command.order.OrderGoodsCommand;
-import com.cmbchina.o2o.wd.onlinemarket.command.order.OrderUpdateCommand;
+import com.cmbchina.o2o.wd.onlinemarket.command.account.AddressCommand;
+import com.cmbchina.o2o.wd.onlinemarket.command.order.*;
+import com.cmbchina.o2o.wd.onlinemarket.constant.OrderStatus;
 import com.cmbchina.o2o.wd.onlinemarket.constant.ResultStatus;
 import com.cmbchina.o2o.wd.onlinemarket.constant.Strings;
 import com.cmbchina.o2o.wd.onlinemarket.constant.UserType;
@@ -14,6 +13,7 @@ import com.cmbchina.o2o.wd.onlinemarket.dto.order.OrderDto;
 import com.cmbchina.o2o.wd.onlinemarket.entity.*;
 import com.cmbchina.o2o.wd.onlinemarket.mapper.*;
 import com.cmbchina.o2o.wd.onlinemarket.service.OrderService;
+import com.cmbchina.o2o.wd.onlinemarket.util.CopyUtil;
 import com.cmbchina.o2o.wd.onlinemarket.util.StringUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -23,11 +23,13 @@ import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -44,6 +46,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Resource
     private UserMapper userMapper;
+
+    @Resource
+    private AddressMapper addressMapper;
 
     @Override
     public PageResult getOrderList(OrderFilterCommand command, HttpServletRequest request) {
@@ -81,25 +86,6 @@ public class OrderServiceImpl implements OrderService {
         List<OrderDetailDto> list = orderDetailMapper.selectOrderDetailList(code);
         return Result.success().setData(list).setMessage("获取订单详情成功！");
     }
-
-    @Override
-    public Result updateOrder(OrderUpdateCommand command, HttpServletRequest request) {
-        String userId = request.getHeader(Strings.USER_ID_KEY);
-        Result state = checkAuthority(request);
-        if (!state.isSuccess()) {
-            return PageResult.fail();
-        }
-        User user = (User) state.getData();
-        // TODO 状态逻辑好好考虑一下
-        if(user.getType() == UserType.MERCHANT){
-            // 商户更新订单的一些状态
-        }else{
-            // 用户更新状态
-            // 用户只允许退款
-        }
-        return Result.success();
-    }
-
 
     @Override
     public Result addOrder(OrderCommand command, HttpServletRequest request) {
@@ -166,6 +152,69 @@ public class OrderServiceImpl implements OrderService {
         return Result.success();
     }
 
+    @Override
+    public Result updateOrderState(OrderAttrUpdateCommand command, HttpServletRequest request) {
+        String userId = request.getHeader(Strings.USER_ID_KEY);
+        Result state = checkAuthority(request);
+        if (!state.isSuccess()) {
+            return PageResult.fail();
+        }
+        Example example = new Example(OrderDetail.class);
+        Example.Criteria  criteria = example.createCriteria().andEqualTo(Strings.CODE,command.getCode());
+        if(Objects.nonNull(command.getGoodsId())){
+            criteria.andEqualTo(Strings.GOODS_ID,command.getGoodsId());
+        }
+        if(Objects.nonNull(command.getAttrId())){
+            criteria.andEqualTo(Strings.ATTR_ID,command.getAttrId());
+        }
+        OrderDetail orderDetail = orderDetailMapper.selectOneByExample(example);
+        // BeanUtils.copyProperties(command,orderDetail);
+        // 只更新订单的状态
+        orderDetail.setOrderStatus(command.getOrderStatus());
+        CopyUtil.updateObject(orderDetail);
+        orderDetailMapper.updateByPrimaryKey(orderDetail);
+        return Result.success().setMessage("更新订单状态成功！");
+    }
+
+    @Override
+    public Result updateOrderInfo(OrderUpdateCommand command, HttpServletRequest request) {
+        String userId = request.getHeader(Strings.USER_ID_KEY);
+        Result state = checkAuthority(request);
+        if (!state.isSuccess()) {
+            return PageResult.fail();
+        }
+        Example example = new Example(Order.class);
+        example.createCriteria().andEqualTo(Strings.CODE,command.getCode());
+        Order order = orderMapper.selectOneByExample(example);
+        order.setOrderStatus(command.getOrderStatus());
+        CopyUtil.updateObject(order);
+        orderMapper.updateByPrimaryKey(order);
+        command.getDetails().forEach(detail ->{
+            //更改状态会立即调用update/order命令，因此只需要更新地址
+            if(detail.isAddressChanged()){
+            Example example1 = new Example(OrderDetail.class);
+            Example.Criteria  criteria = example1.createCriteria().andEqualTo(Strings.CODE,detail.getCode());
+            if(Objects.nonNull(detail.getGoodsId())){
+                criteria.andEqualTo(Strings.GOODS_ID,detail.getGoodsId());
+            }
+            if(Objects.nonNull(detail.getAttrId())){
+                criteria.andEqualTo(Strings.ATTR_ID,detail.getAttrId());
+            }
+             // OrderDetail orderDetail = orderDetailMapper.selectByPrimaryKey(detail.getDetailId());
+             OrderDetail orderDetail = orderDetailMapper.selectOneByExample(example1);
+             Address address = new Address();
+             BeanUtils.copyProperties(detail.getAddress(),address);
+             addressMapper.insert(address);
+             orderDetail.setAddress(address.getAddress());
+             orderDetail.setAddressId(address.getId());
+             CopyUtil.updateObject(orderDetail);
+             orderDetailMapper.updateByPrimaryKey(orderDetail);
+            }
+        });
+        return Result.success().setMessage("更新订单信息成功！");
+
+    }
+
     private Result rollbackRepository(OrderGoodsCommand command) {
         int count = command.getCount();
         if (command.getAttrId() != null) {
@@ -194,12 +243,30 @@ public class OrderServiceImpl implements OrderService {
         }
         return maps;
     }
+    @Override
+    public Result updateAllOrderState(OrderUpdateAllCommand command, HttpServletRequest request){
+        command.getIds().parallelStream().forEach(id->{
+            Order order = orderMapper.selectByPrimaryKey(id);
+            order.setOrderStatus(command.getOrderStatus());
+            CopyUtil.updateObject(order);
+            orderMapper.updateByPrimaryKey(order);
+            Example example = new Example(OrderDetail.class);
+            example.createCriteria().andEqualTo(Strings.CODE,order.getCode());
+            List<OrderDetail> orderDetails = orderDetailMapper.selectByExample(example);
+            for (OrderDetail orderDetail : orderDetails) {
+                orderDetail.setOrderStatus(command.getOrderStatus());
+                CopyUtil.updateObject(orderDetail);
+                orderDetailMapper.updateByPrimaryKey(orderDetail);
+            }
+        });
+        return Result.success().setMessage("更新订单状态成功！");
+    }
 
 
     @Override
     public Result removeOrder(Long id, HttpServletRequest request) {
         String userId = request.getHeader(Strings.USER_ID_KEY);
-        //TODO implement
+        // implement
         return Result.success();
     }
 

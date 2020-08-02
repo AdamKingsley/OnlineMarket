@@ -1,9 +1,7 @@
 package com.cmbchina.o2o.wd.onlinemarket.controller;
 
 
-import com.cmbchina.o2o.wd.onlinemarket.command.order.OrderCommand;
-import com.cmbchina.o2o.wd.onlinemarket.command.order.OrderFilterCommand;
-import com.cmbchina.o2o.wd.onlinemarket.command.order.OrderUpdateCommand;
+import com.cmbchina.o2o.wd.onlinemarket.command.order.*;
 import com.cmbchina.o2o.wd.onlinemarket.dto.PageResult;
 import com.cmbchina.o2o.wd.onlinemarket.dto.Result;
 import com.cmbchina.o2o.wd.onlinemarket.service.OrderService;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 @RestController
 @RequestMapping("/order")
@@ -43,10 +40,23 @@ public class OrderController {
     }
 
 
-    @PutMapping("/update")
+    @PutMapping("/update/state")
+    public Result updateOrder(@RequestBody OrderAttrUpdateCommand command) {
+        // 主要是更新order的状态
+        return orderService.updateOrderState(command, request);
+    }
+
+    @PutMapping("/update/all/state")
+    public Result updateOrder(@RequestBody OrderUpdateAllCommand command) {
+        // 主要是更新order的状态
+        return orderService.updateAllOrderState(command, request);
+    }
+
+
+    @PutMapping("/update/info")
     public Result updateOrder(@RequestBody OrderUpdateCommand command) {
         // 主要是更新order的状态
-        return orderService.updateOrder(command, request);
+        return orderService.updateOrderInfo(command, request);
     }
 
     // 原则上不允许删除订单
