@@ -6,7 +6,9 @@ eureka:
       hostname: merchant
 
 spring:
-  time-zone: GMT+8
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
   application:
     name: merchant-server
   profiles:
