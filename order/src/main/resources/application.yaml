@@ -6,6 +6,7 @@ eureka:
       hostname: order
 
 spring:
+  time-zone: GMT+8
   application:
     name: order-server
   profiles:

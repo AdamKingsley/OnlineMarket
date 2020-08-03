@@ -81,7 +81,6 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     @Transactional
     // 将更新商品信息设置为事务性操作
-    // 最好查找sql加for update锁（暂时停止买卖）
     public Result updateGoods(GoodsCommand command, HttpServletRequest request) {
         String message = "更改商品信息成功！";
         Goods goods = goodsMapper.selectByPrimaryKey(command.getId());

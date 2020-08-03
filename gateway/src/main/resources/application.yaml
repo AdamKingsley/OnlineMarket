@@ -6,6 +6,7 @@ eureka:
       hostname: gateway
 
 spring:
+  time-zone: GMT+8
   application:
     name: gateway-server
   http:

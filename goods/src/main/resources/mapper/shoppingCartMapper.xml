@@ -60,6 +60,12 @@
         <if test="endTime!=null">
             AND a.modify_time &lt;= #{endTime}
         </if>
+        <if test="categoryList!=null and categoryList.size() >0">
+            AND b.category_id in
+            <foreach collection="categoryList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
         order by a.modify_time desc
         <!--        <if test="orderBy!=null and orderBy!=''">-->
         <!--            order by a.${orderBy} desc-->

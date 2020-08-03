@@ -6,6 +6,7 @@ eureka:
       hostname: upload
 
 spring:
+  time-zone: GMT+8
   application:
     name: upload-server
   profiles:

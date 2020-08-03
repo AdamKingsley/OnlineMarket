@@ -1,6 +1,7 @@
 package com.cmbchina.o2o.wd.onlinemarket.service.impl;
 
 import com.cmbchina.o2o.wd.onlinemarket.command.goods.CartCommand;
+import com.cmbchina.o2o.wd.onlinemarket.command.goods.GoodsFilterCommand;
 import com.cmbchina.o2o.wd.onlinemarket.command.goods.ShoppingCartFilterCommand;
 import com.cmbchina.o2o.wd.onlinemarket.constant.ResultStatus;
 import com.cmbchina.o2o.wd.onlinemarket.constant.Strings;
@@ -9,8 +10,10 @@ import com.cmbchina.o2o.wd.onlinemarket.dto.PageResult;
 import com.cmbchina.o2o.wd.onlinemarket.dto.Result;
 import com.cmbchina.o2o.wd.onlinemarket.dto.goods.CartDto;
 import com.cmbchina.o2o.wd.onlinemarket.dto.goods.ShoppingCartDto;
+import com.cmbchina.o2o.wd.onlinemarket.entity.GoodsCategory;
 import com.cmbchina.o2o.wd.onlinemarket.entity.ShoppingCart;
 import com.cmbchina.o2o.wd.onlinemarket.entity.User;
+import com.cmbchina.o2o.wd.onlinemarket.mapper.GoodsCategoryMapper;
 import com.cmbchina.o2o.wd.onlinemarket.mapper.ShoppingCartMapper;
 import com.cmbchina.o2o.wd.onlinemarket.mapper.UserMapper;
 import com.cmbchina.o2o.wd.onlinemarket.service.CartService;
@@ -35,6 +38,8 @@ public class CartServiceImpl implements CartService {
     @Resource
     private UserMapper userMapper;
 
+    @Resource
+    private GoodsCategoryMapper goodsCategoryMapper;
     @Override
     public Result addCart(CartCommand command, HttpServletRequest request) {
         String userId = request.getHeader(Strings.USER_ID_KEY);
@@ -135,6 +140,20 @@ public class CartServiceImpl implements CartService {
         result.setData(carts);
         return result;
     }
+
+
+    private void processCategory(ShoppingCartFilterCommand command) {
+        if (command.getCategoryId() == null || command.getCategoryId() == 0L) {
+            return;
+        }
+        Long id = command.getCategoryId();
+        command.getCategoryList().add(id);
+        Example example = new Example(GoodsCategory.class);
+        example.createCriteria().andEqualTo(Strings.PARENT_ID, id);
+        List<GoodsCategory> categories = goodsCategoryMapper.selectByExample(example);
+        categories.forEach(category -> command.getCategoryList().add(category.getId()));
+    }
+
 
     private List<ShoppingCartDto> processCartList(List<CartDto> list) {
         List<ShoppingCartDto> carts = Lists.newArrayList();

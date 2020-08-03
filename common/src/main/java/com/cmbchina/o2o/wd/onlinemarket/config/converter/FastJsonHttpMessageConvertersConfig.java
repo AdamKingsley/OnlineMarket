@@ -16,12 +16,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 
 @Configuration
 public class FastJsonHttpMessageConvertersConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public HttpMessageConverters fastJsonHttpMessageConverters() {
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT+8"));
         //1.需要定义一个convert转换消息的对象;
         FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
         //2:添加fastJson的配置信息;

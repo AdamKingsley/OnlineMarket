@@ -10,6 +10,7 @@ spring:
     name: admin-server
   profiles:
     active: dev
+  time-zone: GMT+8
 
 server:
   tomcat:

@@ -1,6 +1,5 @@
 package com.cmbchina.o2o.wd.onlinemarket.dto.goods;
 
-import com.gitee.sunchenbin.mybatis.actable.annotation.Column;
 import lombok.Data;
 
 @Data
@@ -15,6 +14,6 @@ public class GoodsAttrDto {
     private double discountRate;
     // private int saledNum;
     // private int storeNum;
-    private boolean onSale;
+    private boolean onSale = true;
     private boolean isSelective = true;
 }

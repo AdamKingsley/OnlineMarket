@@ -6,6 +6,7 @@ eureka:
       hostname: goods
 
 spring:
+  time-zone: GMT+8
   application:
     name: goods-server
   profiles:

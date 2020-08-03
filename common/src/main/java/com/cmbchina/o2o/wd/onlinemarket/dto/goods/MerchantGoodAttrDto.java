@@ -14,5 +14,5 @@ public class MerchantGoodAttrDto {
     private Double discountRate;
     private Integer saledNum;
     private Integer storeNum;
-    private Boolean onSale;
+    private Boolean onSale = true;
 }

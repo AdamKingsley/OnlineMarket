@@ -57,5 +57,5 @@ public class GoodsAttr extends BaseIdEntity {
 
     // 该配置商品是否已经上架
     @Column(name = "on_sale")
-    private Boolean onSale;
+    private Boolean onSale = true;
 }

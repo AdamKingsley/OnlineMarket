@@ -6,6 +6,7 @@ eureka:
       hostname: oauth2
 
 spring:
+  time-zone: GMT+8
   application:
     name: oauth2-server
   profiles:

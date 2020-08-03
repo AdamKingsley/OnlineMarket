@@ -65,7 +65,7 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     private void processCategory(GoodsFilterCommand command) {
-        if (command.getCategoryId() == null || command.getMerchantId() == 0L) {
+        if (command.getCategoryId() == null || command.getCategoryId() == 0L) {
             return;
         }
         Long id = command.getCategoryId();

@@ -5,6 +5,7 @@ server:
     max-swallow-size: 100MB
 
 spring:
+  time-zone: GMT+8
   datasource:
     url: jdbc:mysql://localhost:3306/onlinemarket?characterEncoding=utf8&useSSL=true&serverTimezone=Asia/Shanghai
     username: root
