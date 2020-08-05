@@ -37,7 +37,7 @@ public class DateTimeTypeHandler implements TypeHandler<DateTime> {
 
     private static DateTime toDateTime(Timestamp timestamp) {
         if (timestamp != null) {
-            return new DateTime(timestamp.getTime(), DateTimeZone.UTC);
+            return new DateTime(timestamp.getTime(), DateTimeZone.forID("Asia/Shanghai"));
         } else {
             return null;
         }
