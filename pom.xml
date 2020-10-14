@@ -38,7 +38,7 @@
         <usertype.version>7.0.0.CR1</usertype.version>
         <actable.version>1.2.1.RELEASE</actable.version>
         <mockito.version>3.4.6</mockito.version>
-        <junit.version>4.13</junit.version>
+        <junit.version>4.13.1</junit.version>
     </properties>
 
     <modules>
